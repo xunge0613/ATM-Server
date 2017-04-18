@@ -1,0 +1,20 @@
+{
+	"name": "ATM Server",
+	"version": "0.0.1",
+	"author": "Dalston Xu",
+	"description": "ATM Server",
+	"keywords":["node.js","javascript"],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/xunge0613/ATM-Server"
+	},
+	"license":"MIT",
+	"engines": {"node": "7.9.x"},
+	"contributors":[{"name":"XX","email":"xxdalston@gmail.com"}],
+	"scripts": {
+		"start": "build/ node index.js"
+	},
+	"dependencies": {
+		"koa": "latest",	
+	},	
+}
