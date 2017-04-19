@@ -1,5 +1,5 @@
 {
-	"name": "ATM Server",
+	"name": "ATM-Server",
 	"version": "0.0.1",
 	"author": "Dalston Xu",
 	"description": "ATM Server",
@@ -16,5 +16,10 @@
 	},
 	"dependencies": {
 		"koa": "latest",	
-	},	
+		"koa-route": "latest",
+		"koa-logger": "latest",
+		"koa-views": "latest",
+		"path": "latest",
+		"ejs": "latest"
+	}
 }
