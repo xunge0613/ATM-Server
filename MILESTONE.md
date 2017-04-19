@@ -1,5 +1,7 @@
 # ATM Server 入坑指南 
 
+[TOC]
+
 ## 需求分析
 
 ### 基本功能
@@ -17,7 +19,12 @@ node 环境： Latest
 
 ## 第一天 v0.0.1
 
-### 安装 koa
+| 预期任务|      估时|    实际|
+| :--------: | :--------:| :------: |
+| 安装 koa  |   1h |  0.5h  |
+
+
+### 安装 koa2
 
 http://koajs.com/
 
@@ -54,3 +61,71 @@ node koa.js
 
 > Hello World 
 
+
+
+## 第二天 v0.0.2
+
+| 预期目标 |  估时|  实际|
+| :--------: | :--------:| :------: |
+| koa2 展示静态 html 页面 |  15min | 60min|
+
+
+严重超时： 花了较多时间研究了 koa 的样例 https://github.com/koajs/examples ，结果也没有能确定是否是 koa2 还是路由规则的问题。 于是先按照这篇教程上所写 https://chenshenhai.github.io/koa2-note/note/template/add.html ，实现了简单的模板引擎解析 
+ 
+### koa2 展示静态 html 页面
+
+#### 核心代码
+
+> package.json
+``` json
+{
+	"dependencies": {
+		"koa": "latest",	
+		"koa-route": "latest",
+		"koa-logger": "latest",
+		"koa-views": "latest",
+		"path": "latest",
+		"ejs": "latest"
+	}
+}
+```
+
+> app.js
+``` javascript
+ // 加载模板引擎
+app.use(views(path.join(__dirname, './views'), {
+  extension: 'ejs'
+}))
+```
+
+``` javascript
+// 首页
+app.use( async ( ctx ) => {
+  let title = 'hello koa2'
+  await ctx.render('index', {
+    title,
+  })
+})
+
+```
+
+
+>  ./views/index.ejs
+
+``` html 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Hello ATM-Server</title>
+</head>
+<body>
+	Hello ATM-Server
+</body>
+</html>
+```
+
+#### 运行效果
+
+无论什么路由，都输出：
+> Hello ATM-Server
