@@ -158,4 +158,4 @@ app.use( async ( ctx ) => {
 
 
 
-强烈推荐此教程，https://chenshenhai.github.io/koa2-note/note/start/async.html，简洁明了，比官方文档和样例容易上手的多。
+强烈推荐此教程，https://chenshenhai.github.io/koa2-note/note/start/async.html ，简洁明了，比官方文档和样例容易上手的多。
