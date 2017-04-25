@@ -4,9 +4,21 @@
 
 ## 需求分析
 
-### 基本功能
+### 版本规划
 
-- v1.0.0 后台配置埋点信息，仿小程序数据自定义分析
+#### v1.0.0 
+
+功能点： 后台配置埋点信息，仿小程序数据自定义分析
+
+功能拆分：
+
+- 基础 koa2 服务器搭建 v0.0.1
+- koa2 渲染静态模板页 v0.0.2
+- 引入 ElementUI 实现表单组件 v0.0.3
+- 引入 json-server mock 数据 v0.0.4 
+
+
+
 
 ## 技术选型
 
@@ -17,11 +29,16 @@ koa + Vue.js + json-server
 操作系统： win7
 node 环境： Latest
 
+## 开发模式
+
+安排： 每天安排 1 小时的时间编码，预计完成 1.0.0 版本需要 21 天左右
+
+
 ## 第一天 v0.0.1
 
 | 预期任务|      估时|    实际|
 | :--------: | :--------:| :------: |
-| 安装 koa  |   1h |  0.5h  |
+| 安装 koa  |   60min |  30min  |
 
 
 ### 安装 koa2
@@ -129,3 +146,16 @@ app.use( async ( ctx ) => {
 
 无论什么路由，都输出：
 > Hello ATM-Server
+
+## 第三天 v0.0.3 
+
+
+| 预期目标 |  估时|  实际|
+| :--------: | :--------:| :------: |
+| async / await 语法学习 |  15min | 10min|
+| demo 页加入 Vue.js, ElementUI, lodash，babel，gulp |  30min | --min|
+| demo 页完成简单表单项 |  15min | --min|
+
+
+
+强烈推荐此教程，https://chenshenhai.github.io/koa2-note/note/start/async.html，简洁明了，比官方文档和样例容易上手的多。
