@@ -2,9 +2,132 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Hello ATM-Server</title>
+	<title>Hello ATM-Server EJS</title>
+	<!-- 引入样式 -->
+	<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-default/index.css">
+	<style>
+		.atm-header {
+			text-align: center;
+		}
+		.atm-main {
+			margin-top: 40px;
+		}
+	</style>
 </head>
 <body>
-	Hello ATM-Server
+	<div id="app">
+		<div class="atm-header">
+			<el-row>
+			  <el-col :span="24"><div class="grid-content bg-purple-dark">ATM Server v0.0.4</div></el-col>
+			</el-row>
+		</div>
+		<div class="atm-main">
+			<el-row type="flex" class="row-bg" justify="space-around">
+			  <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
+			  <el-col :span="6">
+			  	<div class="grid-content bg-purple-light">
+			  		<el-form :model="ruleForm2" :rules="rules2" ref="ruleForm2" label-width="100px" class="demo-ruleForm">
+					  <el-form-item label="密码" prop="pass">
+					    <el-input type="password" v-model="ruleForm2.pass" auto-complete="off"></el-input>
+					  </el-form-item>
+					  <el-form-item label="确认密码" prop="checkPass">
+					    <el-input type="password" v-model="ruleForm2.checkPass" auto-complete="off"></el-input>
+					  </el-form-item>
+					  <el-form-item label="年龄" prop="age">
+					    <el-input v-model.number="ruleForm2.age"></el-input>
+					  </el-form-item>
+					  <el-form-item>
+					    <el-button type="primary" @click="submitForm('ruleForm2')">提交</el-button>
+					    <el-button @click="resetForm('ruleForm2')">重置</el-button>
+					  </el-form-item>
+					</el-form>
+			  	</div>
+			  </el-col>
+			  <el-col :span="6"><div class="grid-content bg-purple"></div></el-col>
+			</el-row>
+		</div>						
+	</div>
+	
+
+ 	<!-- 先引入 Vue -->
+  	<script src="https://unpkg.com/vue/dist/vue.js"></script>
+  	<!-- 引入组件库 -->
+	<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+	 <script>
+	    new Vue({
+	      el: '#app',
+	      data: function(){
+	      	var checkAge = (rule, value, callback) => {
+	        if (!value) {
+	          return callback(new Error('年龄不能为空'));
+	        }
+	        setTimeout(() => {
+	          if (!Number.isInteger(value)) {
+	            callback(new Error('请输入数字值'));
+	          } else {
+	            if (value < 18) {
+	              callback(new Error('必须年满18岁'));
+	            } else {
+	              callback();
+	            }
+	          }
+	        }, 1000);
+	      };
+	      var validatePass = (rule, value, callback) => {
+	        if (value === '') {
+	          callback(new Error('请输入密码'));
+	        } else {
+	          if (this.ruleForm2.checkPass !== '') {
+	            this.$refs.ruleForm2.validateField('checkPass');
+	          }
+	          callback();
+	        }
+	      };
+	      var validatePass2 = (rule, value, callback) => {
+	        if (value === '') {
+	          callback(new Error('请再次输入密码'));
+	        } else if (value !== this.ruleForm2.pass) {
+	          callback(new Error('两次输入密码不一致!'));
+	        } else {
+	          callback();
+	        }
+	      };
+	      return {
+	        ruleForm2: {
+	          pass: '',
+	          checkPass: '',
+	          age: ''
+	        },
+	        rules2: {
+	          pass: [
+	            { validator: validatePass, trigger: 'blur' }
+	          ],
+	          checkPass: [
+	            { validator: validatePass2, trigger: 'blur' }
+	          ],
+	          age: [
+	            { validator: checkAge, trigger: 'blur' }
+	          ]
+	        }
+	      };
+	      },
+	      methods: {
+		      submitForm(formName) {
+		        this.$refs[formName].validate((valid) => {
+		          if (valid) {
+		            alert('submit!');
+		          } else {
+		            console.log('error submit!!');
+		            return false;
+		          }
+		        });
+		      },
+		      resetForm(formName) {
+		        this.$refs[formName].resetFields();
+		      }
+		    }
+	    })
+  </script>
 </body>
 </html>

@@ -20,6 +20,9 @@
 		"koa-logger": "latest",
 		"koa-views": "latest",
 		"path": "latest",
-		"ejs": "latest"
+		"lodash": "latest"		 
+	},
+	"devDependencies": {
+		"gulp": "latest"
 	}
 }
