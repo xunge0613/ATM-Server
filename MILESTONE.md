@@ -153,9 +153,37 @@ app.use( async ( ctx ) => {
 | 预期目标 |  估时|  实际|
 | :--------: | :--------:| :------: |
 | async / await 语法学习 |  15min | 10min|
-| demo 页加入 Vue.js, ElementUI, lodash，babel，gulp |  30min | --min|
-| demo 页完成简单表单项 |  15min | --min|
+| demo 页加入 Vue.js, ElementUI |  20min | 5min|
+| demo 页完成简单表单项 |  15min | 10min|
+
+### async / await 练习
+
+强烈推荐此教程，https://chenshenhai.github.io/koa2-note/note/start/async.html，简洁明了，比官方文档和样例容易上手的多。
+
+### demo 页加入 Vue.js, ElementUI 
+
+出于方便，直接使用外置 js 方式，引入了 Vue.js 以及 ElementUI ，参照了 ElementUI 的官方文档
+- 如何安装： http://element.eleme.io/#/zh-CN/component/installation 
+
+**注： 请避免使用 IE8 及以下浏览器**
+
+### demo 页完成简单表单项
+
+由于 ATM Server 最基础的功能实际就是一个表单，于是优先把表单组件放进来
+
+- form 组件说明： http://element.eleme.io/#/zh-CN/component/form
+
+### 记录
+
+- 【记】ElementUI 提供了多套布局模式，包括栅格布局、分栏间隔、响应式布局、Flex 布局等等，大部分和 bootstrap 布局模式类似，多了个 Flex 布局方案，赞。
+- 【问】目前的布局模式都只支持控制横向的间距，对于纵向的间距仍需要手写 CSS 实现。
+- 【记】在组件的引用方面，页面里加载完 vue.js 以及 组件库.js 后，只需要在 script 里直接 new Vue 实例即可，无需再手动 import 对应组件。而之前我在开发公司的 Vue.js 项目时，同样是使用 webpack 打包生成一个组件库，但是页面 js 里还是先 import ahsInput from ahs.js 声明一下引入了何种组件。究其原因我认为可能是 Element UI 在 webpack 打包时的组件名与页面中使用时组件名是一致的。
+
+## 第四天 v0.0.4
 
 
-
-强烈推荐此教程，https://chenshenhai.github.io/koa2-note/note/start/async.html ，简洁明了，比官方文档和样例容易上手的多。
+| 预期目标 |  估时|  实际|
+| :--------: | :--------:| :------: |
+| demo 页加入 lodash、gulp、webpack、babel |  20min | --min|
+| 简单定义基础功能所需接口 API 文档 |  20min | --min|
+| demo 页加入 json.server or 在线 mock 工具 mock 数据 |  20min | --min|
