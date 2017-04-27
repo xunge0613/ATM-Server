@@ -184,6 +184,66 @@ app.use( async ( ctx ) => {
 
 | 预期目标 |  估时|  实际|
 | :--------: | :--------:| :------: |
-| demo 页加入 lodash、gulp、webpack、babel |  20min | --min|
-| 简单定义基础功能所需接口 API 文档 |  20min | --min|
-| demo 页加入 json.server or 在线 mock 工具 mock 数据 |  20min | --min|
+| demo 页加入 lodash、gulp、babel |  20min | 20min|
+| 简单定义基础功能所需接口 API 文档 |  20min | 10min|
+| demo 页加入 json.server or 在线 mock 工具 mock 数据 |  20min | 15min|
+
+### demo 页加入 lodash、gulp、babel
+
+文件夹组织结构： 
+
+- static/dist 放编译后的静态资源文件， static/src 放编译前的静态资源源文件
+- static/dist/page/index ， 每一个页面为一个小模块，文件夹内包含 js、less （仿小程序文件思想，组件化）
+
+``` javascript
+// gulp 配置举例
+// 编译并压缩页面js /page/
+gulp.task("pageJs", function () {
+    gulp.src(pageJsSrc)
+        .pipe(plugins.sourcemaps.init())
+        .pipe(plugins.babel({
+            presets: ['es2015'] // es6 -> es5
+        })) 
+        //.pipe(plugins.rename({ suffix: '.babel' }))
+        //.pipe(gulp.dest('wwwroot/dist/js/page'))
+        .pipe(plugins.rename({ suffix: '.babel.min' })) //         
+        .pipe(plugins.uglify())
+        .pipe(plugins.sourcemaps.write("."))        // 输出sourcemaps
+        .pipe(gulp.dest('./static/dist/page'))       // 目标路径       
+});
+
+```
+
+### 简单定义基础功能所需接口 API 文档
+
+使用 easy-mock + swagger 定义文档 + mock 数据  https://juejin.im/post/58ff1fae61ff4b0066792f6e
+
+| Name		|     Type |   Required   |   Description   |
+| :-: | :-:| :-: | :-: |
+| nameInfo |   Object|  true |   统计事件名称   | 
+| nameInfo.en |   String |  true |   事件英文名称   | 
+| nameInfo.zh |   String |  true |   事件中文名称   | 
+| trackInfo |   Object|  true |   统计事件配置信息   | 
+| trackInfo.trigger	|   String |  true |   触发事件名称   | 
+| trackInfo.page	|   String |  true |   触发事件所在页面   | 
+| trackInfo.element	|   String |  true |   触发事件元素选择器名   | 
+| trackInfo.data	|   Object|  false  |   可空，附带参数   | 
+
+### demo 页加入 json.server or 在线 mock 工具 mock 数据
+
+选择： 在线 mock 工具 Easy Mock https://juejin.im/post/58ff1fae61ff4b0066792f6e
+
+mock server url :  https://www.easy-mock.com/mock/590222fa7a878d73716dda34/index/event
+
+### 记录
+ 
+ - 【记】由于目前 koa 服务器尚未实现处理静态资源请求，所以无法在服务器环境下访问 js 文件。暂时先文件协议访问页面。
+
+
+## 第五天 v0.0.5
+
+
+| 预期目标 |  估时|  实际|
+| :--------: | :--------:| :------: |
+| demo 页加入 webpack |  30min | --min|
+| koa 服务器处理静态资源请求（js、css） |  20min | --min|
