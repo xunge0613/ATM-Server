@@ -1,0 +1,14 @@
+{
+	"nameInfo": {
+		"en": "submitTrade",
+		"zh": "提交订单"
+	},
+	"trackInfo": {
+		"trigger": "click",	
+		"page": ".*",
+		"element": ".js-tracker",
+		"data": {
+
+		}
+	}
+}
